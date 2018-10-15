@@ -68,14 +68,14 @@ namespace Sinbad {
             return ret;
         }
 
-        // Load a CSV file containing fields for a single object from a file
-        // No header is required, but it can be present with '#' prefix
-        // First column is property name, second is value
-        // You can optionally include other columns for descriptions etc, these are ignored
-        // If you want to include a header, make sure the first line starts with '#'
-        // then it will be ignored (as will any lines that start that way)
-        // This method throws file exceptions if file is not found
+        // Load a CSV into a list of struct/classes from a stream where each line = 1 object
+        // First line of the CSV must be a header containing property names
+        // Can optionally include any other columns headed with #foo, which are ignored
+        // E.g. you can include a #Description column to provide notes which are ignored
         // Field names are matched case-insensitive for convenience
+        // @param rdr Input reader
+        // @param strict If true, log errors if a line doesn't have enough
+        //   fields as per the header. If false, ignores and just fills what it can
         public static void LoadObject<T>(string filename, ref T destObject) {
             using (var stream = File.Open(filename, FileMode.Open)) {
                 using (var rdr = new StreamReader(stream)) {

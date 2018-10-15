@@ -74,8 +74,6 @@ Zaphod Beeblebrox,3.1,""Amazingly amazing"",000359,Green";
                 CsvUtil.LoadObject(sr, ref t);
             }
         }
-
-        Debug.Log(t.ToString());
     }
 
     public void TestLoadSingleWithHeader()
@@ -96,8 +94,6 @@ Zaphod Beeblebrox,3.1,""Amazingly amazing"",000359,Green";
                 CsvUtil.LoadObject(sr, ref t);
             }
         }
-
-        Debug.Log(t.ToString());
     }
 
     public void TestLoadSingleEmbeddedCommas()
@@ -119,8 +115,6 @@ Zaphod Beeblebrox,3.1,""Amazingly amazing"",000359,Green";
                 CsvUtil.LoadObject(sr, ref t);
             }
         }
-
-        Debug.Log(t.ToString());
     }
 
     public void TestLoadMulti()
@@ -145,8 +139,6 @@ Zaphod Beeblebrox,3.1,""Amazingly amazing"",000359,Green";
         TestObject t = objs[0];
         t = objs[1];
         t = objs[2];
-
-        Debug.Log(t.ToString());
     }
     
     public void TestLoadMultiWithSpacesInHeader()
@@ -171,8 +163,6 @@ Zaphod Beeblebrox,3.1,""Amazingly amazing"",000359,Green";
         TestObject t = objs[0];
         t = objs[1];
         t = objs[2];
-
-        Debug.Log(t.ToString());
     }
 
     public void TestSaveSingle()
