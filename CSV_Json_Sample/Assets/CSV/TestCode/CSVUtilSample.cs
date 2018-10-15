@@ -21,6 +21,13 @@ public class CSVUtilSample : MonoBehaviour
         TestSaveSingle();
         TestSaveSingleQuoted();
         TestSaveMulti();
+
+        TestLoadSingleWithSpacesInHeader();
+        TestLoadProperties();
+
+        TestLoadPropertiesAndFieldsSameName();
+
+        TestLoadStruct();
     }
 
     #region TestObject
@@ -148,9 +155,9 @@ Zaphod Beeblebrox,3.1,""Amazingly amazing"",000359,Green";
         // #Field headers are ignored
         // This time we don't want any prefixing since not trimmed
         string csvData = @"String Field, FloatField ,#Description, Int  Field ,   EnumField
-                ""This,has,commas,in it"",2.34,Something ignored,35,Red
-                Hello World,256.25,""Notes here"",10003,Purple
-                Zaphod Beeblebrox,3.1,""Amazingly amazing"",000359,Green";
+""This,has,commas,in it"",2.34,Something ignored,35,Red
+Hello World,256.25,""Notes here"",10003,Purple
+Zaphod Beeblebrox,3.1,""Amazingly amazing"",000359,Green";
 
         List<TestObject> objs;
         using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(csvData)))

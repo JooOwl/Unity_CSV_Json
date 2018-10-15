@@ -1,3 +1,5 @@
+// Unity simple CSV/object serialiser comes from [inbad/UnityCsvUtil] (https://github.com/sinbad/UnityCsvUtil) on the Github
+
 using UnityEngine;
 using System.Text.RegularExpressions;
 using System.IO;
@@ -6,8 +8,6 @@ using System.Collections.Generic;
 using System;
 using System.Reflection;
 using System.ComponentModel;
-
-// https://github.com/sinbad/UnityCsvUtil
 
 namespace Sinbad {
 
