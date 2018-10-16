@@ -176,10 +176,12 @@ public class SDebugLog : MonoBehaviour {
 	{
 		if (mLines.Count == 0)
 		{
+            /*
 			if (mRayDebug && UICamera.hoveredObject != null && Application.isPlaying)
 			{
 				GUILayout.Label("Last Hit: " + NGUITools.GetHierarchy(UICamera.hoveredObject).Replace("\"", ""));
 			}
+            */
 		}
 		else
 		{
