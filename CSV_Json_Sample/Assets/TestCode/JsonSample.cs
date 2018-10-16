@@ -21,6 +21,8 @@ public class JsonSample : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        SDebugLog.LogString("ASDF", LogColor.BLACK);
+
         Dictionary<int, TestJsonData> temp = new Dictionary<int, TestJsonData>();
 
         for(int i=0; i<10;++i)
