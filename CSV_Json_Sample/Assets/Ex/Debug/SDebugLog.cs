@@ -25,17 +25,26 @@ public enum LogColor
     CERULEAN_BLUE2,
 }
 
+public enum DebugLogType
+{
+    Nomal,
+    Warring,
+    Error,
+    Screen,
+}
+
 public class SDebugLog : MonoBehaviour {
 
 	static List<string> mLines = new List<string>();
 
 	static bool mRayDebug = false;
 	static public void LogClear () { mLines.Clear(); }
-	static SDebugLog mInstance = null;
 
     static Dictionary<LogColor, string> dic_color = new Dictionary<LogColor, string>();
 
-	static public bool debugRaycast
+    static SDebugLog mInstance = null;
+
+    static public bool DebugRaycast
 	{
 		get
 		{
@@ -51,7 +60,7 @@ public class SDebugLog : MonoBehaviour {
 		}
 	}
 
-    static public void LogWarring(params object[] objs)
+    static public void LogToType(DebugLogType _type, params object[] objs)
     {
         string text = "";
 
@@ -67,50 +76,23 @@ public class SDebugLog : MonoBehaviour {
             }
         }
 
-        Debug.LogWarning(text);
+        switch(_type)
+        {
+            case DebugLogType.Nomal:
+                Debug.Log(text);
+                //LogString(text);
+                break;
+            case DebugLogType.Warring:
+                Debug.LogWarning(text);
+                break;
+            case DebugLogType.Error:
+                Debug.LogError(text);
+                break;
+            case DebugLogType.Screen:
+                ScreenViewLog(text);
+                break;
+        }
     }
-
-    static public void LogError (params object[] objs)
-	{
-		string text = "";
-
-		for (int i = 0; i < objs.Length; ++i)
-		{
-			if (i == 0)
-			{
-				text += objs[i].ToString();
-			}
-			else
-			{
-				text += ", " + objs[i].ToString();
-			}
-		}
-
-		Debug.LogError (text);
-	}
-
-	void ClearToTime()
-	{
-		mLines.Clear();
-	}
-
-	static public void LogView (params object[] objs)
-	{
-		string text = "";
-		
-		for (int i = 0; i < objs.Length; ++i)
-		{
-			if (i == 0)
-			{
-				text += objs[i].ToString();
-			}
-			else
-			{
-				text += ", " + objs[i].ToString();
-			}
-		}
-		LogString(text);
-	}
 
     static void SetTextColor()
     {
@@ -143,26 +125,33 @@ public class SDebugLog : MonoBehaviour {
 
         string logtext = string.Format("<color=#{0}>{1}</color>", dic_color[logColor], text);
 
-        if (Application.isPlaying)
-		{
-			if (mLines.Count > 30) mLines.RemoveAt(0);
-
-			mLines.Add(text);
-
-			CreateInstance();
-
-			Debug.Log(logtext);
-		}
-		else Debug.Log(logtext);
-
-		if( mInstance != null)
-		{
-			mInstance.CancelInvoke ( "ClearToTime" );
-			mInstance.Invoke( "ClearToTime", 60f);
-		}
+        Debug.Log(logtext);
 	}
 
-	static public void CreateInstance ()
+    static public void ScreenViewLog(string _str)
+    {
+        if (Application.isPlaying)
+        {
+            if (mLines.Count > 30) mLines.RemoveAt(0);
+
+            mLines.Add(_str);
+
+            CreateInstance();
+
+            if (mInstance != null)
+            {
+                mInstance.CancelInvoke("ClearToTime");
+                mInstance.Invoke("ClearToTime", 60f);
+            }
+        }
+    }
+
+    void ClearToTime()
+    {
+        mLines.Clear();
+    }
+
+    static public void CreateInstance ()
 	{
 		if (mInstance == null)
 		{
@@ -174,21 +163,12 @@ public class SDebugLog : MonoBehaviour {
 
 	void OnGUI()
 	{
-		if (mLines.Count == 0)
+		if (mLines.Count > 0)
 		{
-            /*
-			if (mRayDebug && UICamera.hoveredObject != null && Application.isPlaying)
-			{
-				GUILayout.Label("Last Hit: " + NGUITools.GetHierarchy(UICamera.hoveredObject).Replace("\"", ""));
-			}
-            */
-		}
-		else
-		{
-			for (int i = 0, imax = mLines.Count; i < imax; ++i)
-			{
-				GUILayout.Label(mLines[i]);
-			}
-		}
+            for (int i = 0, imax = mLines.Count; i < imax; ++i)
+            {
+                GUILayout.Label(mLines[i]);
+            }
+        }
 	}
 }

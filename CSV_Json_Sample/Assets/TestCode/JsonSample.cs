@@ -22,6 +22,7 @@ public class JsonSample : MonoBehaviour {
 	void Start ()
     {
         SDebugLog.LogString("ASDF", LogColor.BLACK);
+        SDebugLog.LogToType(DebugLogType.Screen, "ASDFASDF");
 
         Dictionary<int, TestJsonData> temp = new Dictionary<int, TestJsonData>();
 
