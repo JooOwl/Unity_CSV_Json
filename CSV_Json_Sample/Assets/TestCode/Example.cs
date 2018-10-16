@@ -110,7 +110,6 @@ public class Example : MonoBehaviour {
         {
             Debug.Log(input + " included peachful word");
         }
-        Debug.Log("AAA : " + CSVLoader.instance._greetingWords["hello"].Words);
     }
 
     void RunExampleKSH(string input)
@@ -120,7 +119,6 @@ public class Example : MonoBehaviour {
         {
             Debug.Log(input + " included peachful word");
         }
-        Debug.Log("BBB : " + CSVLoader.instance._greetingWords["hello"].Words);
     }
 
 
@@ -138,10 +136,6 @@ public class Example : MonoBehaviour {
         {
             Debug.Log(find.id + " included peachful word," + find.StrValue);
         }
-
-        Debug.Log("CCC : " + find.id);
-        Debug.Log("CCC : " + find.StrValue);
-
     }
 
     void RunExample3(int id)
@@ -153,9 +147,6 @@ public class Example : MonoBehaviour {
         {
             Debug.Log(find.id + " included peachful word," + find.StrValue);
         }
-
-        Debug.Log("DDD : " + find.id);
-        Debug.Log("DDD : " + find.StrValue);
     }
 
     // ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -181,11 +172,6 @@ public class Example : MonoBehaviour {
         _SaveListToAssets(lst, "Assets/Resources/CsvRecords.csv");
 
         List<MyObject> lstLoad = Sinbad.CsvUtil.LoadObjects<MyObject>("Assets/Resources/CsvRecords.csv");
-        foreach (var data in lstLoad)
-        {
-            Debug.Log("EEE Data:" + data.ToString());
-        }
-
     }
 
     void _SaveToLocal(MyObject obj)
