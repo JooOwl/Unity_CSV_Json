@@ -8,4 +8,5 @@ CSV 와 Json 을 위한 연습 예제 입니다.
 보시고 부족한거 있으면 알려주세요. 수정해서 다시 올릴께요
 
 CSV 사용 : https://github.com/sinbad/UnityCsvUtil
+
 Json 사용 : https://assetstore.unity.com/packages/tools/input-management/json-net-for-unity-11347
